@@ -1,1 +1,324 @@
+{% extends "base.html" %}
+{% load i18n static %}
 
+{% block title %}{{ site.site_name }} | {% trans "توسعه‌دهنده نرم‌افزار" %}{% endblock %}
+
+{% block content %}
+<div class="wrap hero">
+  <div class="hero-photo">
+    <div class="photo-bg"></div>
+    {% if site.hero_photo %}
+    <img class="avatar" src="{{ site.hero_photo.url }}" alt="{{ site.site_name }}">
+    {% else %}
+    <div class="avatar" style="display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--py-blue)">ET</div>
+    {% endif %}
+  </div>
+  <div>
+    {% if site.is_available %}
+    <div class="eyebrow"><span class="bar"></span>{% trans "در جستجوی فعال برای پروژه‌های جدید" %}</div>
+    {% endif %}
+    <h1>{{ site.site_name }}</h1>
+    <p class="role">{% trans "توسعه‌دهنده نرم‌افزار · Python · Django · Flask" %}</p>
+    <p class="lede">{% trans "برنامه‌نویسی را از زاویه‌ی حل مسئله دنبال می‌کنم؛ از تحلیل داده تا ساخت اپلیکیشن‌های وب، با تمرکز روی کد تمیز و ذهنیت الگوریتمیک." %}</p>
+    <div class="cta-row">
+      <a href="#start-project" class="btn btn-primary">{% trans "شروع پروژه" %}</a>
+      <a href="#project" class="btn btn-ghost">{% trans "مشاهده نمونه کارها" %}</a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="term-bar">
+      <span class="r"></span><span class="y"></span><span class="g"></span>
+      <span class="term-title">esmaeil@qeshm:~</span>
+    </div>
+    <div class="term-body" id="termBody"></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="sec-head"><h2 class="sec-title">{% trans "درباره من" %}</h2><span class="sec-tag">// about</span></div>
+      {% if site.about_text %}
+      <div class="about-text">{{ site.about_text|safe }}</div>
+      {% else %}
+      <p>{% trans "برنامه‌نویس و کدنویس علاقه‌مند به هوش مصنوعی و تحلیل داده هستم. در کنار کار تیمی، به ذهنیت الگوریتمیک برای حل مسائل و چالش‌های پیش رو اهمیت زیادی می‌دهم و همیشه به دنبال یادگیری فناوری‌های تازه‌ام." %}</p>
+      <p>{% trans "در حال حاضر دانشجوی مهندسی کامپیوتر و به‌صورت پروژه‌ای در دسترس برای همکاری هستم." %}</p>
+      {% endif %}
+    </div>
+    <div class="facts">
+      <dl>
+        <dt>location</dt><dd>{{ site.location }}</dd>
+        <dt>status</dt><dd>{{ site.status }}</dd>
+        <dt>work_type</dt><dd>{{ site.work_type }}</dd>
+        <dt>remote</dt><dd>{{ site.remote_note|default:_("قشم و امکان همکاری غیرحضوری") }}</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">{% trans "مهارت‌های فنی" %}</h2><span class="sec-tag">GET /skills</span></div>
+    {% for s in skills %}
+    <div class="endpoint">
+      <span class="method">200 OK</span>
+      <span class="path">/stack/<b>{{ s.slug }}</b></span>
+      <span class="exp">
+        <span class="barwrap"><span class="barfill" style="width:{{ s.level_percent }}%"></span></span>
+        <span class="exp-label">{{ s.experience_label }}</span>
+      </span>
+    </div>
+    {% empty %}
+    <p class="lede">{% trans "مهارت‌ها از پنل ادمین قابل افزودن هستند." %}</p>
+    {% endfor %}
+    {% if extra_skills %}
+    <div class="tagcloud">
+      {% for s in extra_skills %}
+      <span class="tag {% if s.level_percent >= 40 %}hi{% endif %}">{{ s.name }} · {{ s.experience_label }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="sec-head" style="margin-top:44px;"><h2 class="sec-title" style="font-size:20px;">{% trans "مهارت‌های نرم" %}</h2></div>
+    <div class="soft-grid">
+      {% for s in soft_skills %}
+      <div class="soft-item">{{ s.name }}
+        <span class="dots">
+          {% for i in "12345" %}
+          <span class="{% if forloop.counter <= s.level %}on{% endif %}"></span>
+          {% endfor %}
+        </span>
+      </div>
+      {% empty %}
+      <p>{% trans "از پنل ادمین اضافه کنید." %}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">{% trans "تحصیلات" %}</h2><span class="sec-tag">// education</span></div>
+    <div class="timeline">
+      {% for e in education %}
+      <div class="t-item">
+        <div class="t-date">{{ e.start_date }} — {{ e.end_date }}</div>
+        <h3 class="t-title">{{ e.title }}</h3>
+        <p class="t-sub">{% if e.degree %}{{ e.degree }} · {% endif %}{{ e.institution }}</p>
+        {% if e.badge %}<span class="badge">{{ e.badge }}</span>{% endif %}
+      </div>
+      {% empty %}
+      <p>{% trans "تحصیلات از پنل ادمین قابل افزودن است." %}</p>
+      {% endfor %}
+    </div>
+
+    {% if grades %}
+    <div class="sec-head" style="margin-top:52px;"><h2 class="sec-title" style="font-size:20px;">{% trans "نمرات مهم" %}</h2></div>
+    <div class="card">
+      {% for g in grades %}
+      <div class="grade-row">
+        <div class="grade-num">{{ g.score }}</div>
+        <div class="grade-txt"><b>{{ g.course }}</b><span>{{ g.context }}</span></div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if certificates %}
+    <div class="sec-head" style="margin-top:52px;"><h2 class="sec-title" style="font-size:20px;">{% trans "گواهی‌ها" %}</h2></div>
+    <div class="card-grid">
+      {% for c in certificates %}
+      <div class="card">
+        <h3>{{ c.title }}</h3>
+        <p class="sub">{{ c.issuer }}</p>
+        <div class="period">{{ c.period }}</div>
+        <div class="tagcloud">
+          {% for t in c.tag_list %}<span class="tag">{{ t }}</span>{% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">{% trans "پروژه‌های متن‌باز" %}</h2><span class="sec-tag">// projects</span></div>
+    {% for p in projects %}
+    <div class="project">
+      <div class="project-head">
+        <h3>{{ p.title }}</h3>
+        {% if p.status %}<span class="status-pill">{{ p.status }}</span>{% endif %}
+      </div>
+      <p>{{ p.summary }}</p>
+      <div class="tagcloud">
+        {% for t in p.tag_list %}<span class="tag hi">{{ t }}</span>{% endfor %}
+      </div>
+    </div>
+    {% empty %}
+    <p>{% trans "پروژه‌ها از پنل ادمین قابل افزودن هستند." %}</p>
+    {% endfor %}
+
+    {% if fav_techs %}
+    <div class="sec-head" style="margin-top:52px;"><h2 class="sec-title" style="font-size:20px;">{% trans "تکنولوژی‌های مورد علاقه برای کار" %}</h2></div>
+    <div class="tagcloud">
+      {% for t in fav_techs %}
+      <span class="tag {% if t.is_highlight %}hi{% endif %}">{{ t.name }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if languages %}
+<section id="languages">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">{% trans "زبان‌ها" %}</h2><span class="sec-tag">// languages</span></div>
+    <div class="card" style="max-width:420px;">
+      {% for l in languages %}
+      <div class="lang-row">
+        <span>{{ l.name }}</span>
+        <span class="dots">
+          {% for i in "12345" %}
+          <span class="{% if forloop.counter <= l.level %}on{% endif %}"></span>
+          {% endfor %}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="start-project">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">{% trans "شروع پروژه" %}</h2><span class="sec-tag">POST /project/new</span></div>
+    <p style="color:var(--text-dim); font-size:15px; max-width:56ch; margin:-10px 0 34px;">{% trans "فقط چند قدم تا شروع همکاری فاصله دارید. اطلاعات پروژه‌تان را وارد کنید تا در کمتر از ۲۴ ساعت باهاتون تماس بگیرم." %}</p>
+
+    <div class="wizard">
+      <div class="wizard-top">
+        <div class="steps-indicator">
+          <div class="step-dot active" data-dot="1"></div>
+          <div class="step-dot" data-dot="2"></div>
+          <div class="step-dot" data-dot="3"></div>
+          <div class="step-dot" data-dot="4"></div>
+        </div>
+        <div class="steps-labels">
+          <span class="active" data-label="1">{% trans "اطلاعات تماس" %}</span>
+          <span data-label="2">{% trans "نوع پروژه" %}</span>
+          <span data-label="3">{% trans "جزئیات" %}</span>
+          <span data-label="4">{% trans "تکمیلی" %}</span>
+        </div>
+      </div>
+      <div class="wizard-body">
+        <form id="projectForm" method="post" action="{% url 'core:project_inquiry' %}">
+          {% csrf_token %}
+          <div class="step-panel active" data-step="1">
+            <h3 class="step-heading">{% trans "اطلاعات تماس" %}</h3>
+            <p class="step-desc">{% trans "لطفاً اطلاعات خود را وارد کنید" %}</p>
+            <div class="field"><label>{% trans "نام و نام خانوادگی" %} *</label><input type="text" name="fullname" required></div>
+            <div class="field"><label>{% trans "ایمیل" %} *</label><input type="email" name="email" required></div>
+            <div class="field"><label>{% trans "شماره تماس" %} *</label><input type="tel" name="phone" required></div>
+            <div class="field"><label>{% trans "نام شرکت" %} <span class="opt">({% trans "اختیاری" %})</span></label><input type="text" name="company"></div>
+          </div>
+          <div class="step-panel" data-step="2">
+            <h3 class="step-heading">{% trans "نوع پروژه" %}</h3>
+            <p class="step-desc">{% trans "پروژه‌ی شما به کدام دسته نزدیک‌تر است؟" %}</p>
+            <div class="radio-grid">
+              <label class="radio-card"><input type="radio" name="ptype" value="وب‌سایت / اپلیکیشن وب"><b>{% trans "وب‌سایت / اپلیکیشن وب" %}</b><small>Django · Flask</small></label>
+              <label class="radio-card"><input type="radio" name="ptype" value="تحلیل داده و وب‌اسکرپینگ"><b>{% trans "تحلیل داده و وب‌اسکرپینگ" %}</b><small>Pandas · Selenium</small></label>
+              <label class="radio-card"><input type="radio" name="ptype" value="اتوماسیون و اسکریپت"><b>{% trans "اتوماسیون و اسکریپت" %}</b><small>Python</small></label>
+              <label class="radio-card"><input type="radio" name="ptype" value="سایر"><b>{% trans "سایر" %}</b><small>{% trans "بگویید چه چیزی مدنظرتان است" %}</small></label>
+            </div>
+          </div>
+          <div class="step-panel" data-step="3">
+            <h3 class="step-heading">{% trans "جزئیات پروژه" %}</h3>
+            <p class="step-desc">{% trans "کمی درباره پروژه‌تان توضیح دهید" %}</p>
+            <div class="field"><label>{% trans "توضیح پروژه" %} *</label><textarea name="details" required></textarea></div>
+            <div class="field">
+              <label>{% trans "بودجه تقریبی" %} <span class="opt">({% trans "اختیاری" %})</span></label>
+              <select name="budget">
+                <option value="">{% trans "انتخاب کنید" %}</option>
+                <option value="زیر ۵ میلیون تومان">{% trans "زیر ۵ میلیون تومان" %}</option>
+                <option value="۵ تا ۱۵ میلیون تومان">{% trans "۵ تا ۱۵ میلیون تومان" %}</option>
+                <option value="۱۵ تا ۳۰ میلیون تومان">{% trans "۱۵ تا ۳۰ میلیون تومان" %}</option>
+                <option value="بیش از ۳۰ میلیون تومان">{% trans "بیش از ۳۰ میلیون تومان" %}</option>
+                <option value="هنوز مشخص نیست">{% trans "هنوز مشخص نیست" %}</option>
+              </select>
+            </div>
+            <div class="field"><label>{% trans "بازه زمانی مدنظر" %} <span class="opt">({% trans "اختیاری" %})</span></label><input type="text" name="timeline"></div>
+          </div>
+          <div class="step-panel" data-step="4">
+            <h3 class="step-heading">{% trans "اطلاعات تکمیلی" %}</h3>
+            <p class="step-desc">{% trans "آخرین نکاتی که کمک می‌کند بهتر آماده شوم" %}</p>
+            <div class="field">
+              <label>{% trans "روش ترجیحی برای تماس" %} <span class="opt">({% trans "اختیاری" %})</span></label>
+              <select name="contactPref">
+                <option value="">{% trans "انتخاب کنید" %}</option>
+                <option value="ایمیل">{% trans "ایمیل" %}</option>
+                <option value="تلگرام">{% trans "تلگرام" %}</option>
+                <option value="تماس تلفنی">{% trans "تماس تلفنی" %}</option>
+              </select>
+            </div>
+            <div class="field"><label>{% trans "نکته یا توضیح اضافه" %} <span class="opt">({% trans "اختیاری" %})</span></label><textarea name="extra"></textarea></div>
+          </div>
+          <div class="step-panel" data-step="review">
+            <h3 class="step-heading">{% trans "مرور و ارسال" %}</h3>
+            <p class="step-desc">{% trans "قبل از ارسال، اطلاعات را بررسی کنید" %}</p>
+            <ul class="review-list" id="reviewList"></ul>
+          </div>
+          <div class="step-panel" data-step="success">
+            <div class="success-panel">
+              <div class="ok-badge">✓</div>
+              <h3 class="step-heading">{% trans "آماده ارسال" %}</h3>
+              <p class="step-desc">{% trans "با زدن دکمه زیر درخواست ثبت می‌شود." %}</p>
+            </div>
+          </div>
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-ghost" id="prevBtn">{% trans "قبلی" %}</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">{% trans "بعدی" %}</button>
+          </div>
+        </form>
+      </div>
+      <div class="trust-row">
+        <span>{% trans "پاسخ در کمتر از ۲۴ ساعت" %}</span>
+        <span>{% trans "محرمانگی اطلاعات تضمین‌شده" %}</span>
+        <span>{% trans "مشاوره اولیه رایگان" %}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-title">{% trans "تماس با من" %}</h2><span class="sec-tag">// contact</span></div>
+    <div class="contact-grid">
+      {% if site.email %}
+      <a class="contact-card" href="mailto:{{ site.email }}">
+        <span class="ic">@</span>
+        <span><span class="label">email</span><br><span class="value">{{ site.email }}</span></span>
+      </a>
+      {% endif %}
+      {% if site.phone %}
+      <a class="contact-card" href="tel:+98{{ site.phone|cut:' '|cut:'-' }}">
+        <span class="ic">#</span>
+        <span><span class="label">phone</span><br><span class="value">{{ site.phone }}</span></span>
+      </a>
+      {% endif %}
+      {% if site.github_url %}
+      <a class="contact-card" href="{{ site.github_url }}" target="_blank" rel="noopener">
+        <span class="ic">gh</span>
+        <span><span class="label">github</span><br><span class="value">{{ site.github_url|cut:"https://"|cut:"http://" }}</span></span>
+      </a>
+      {% endif %}
+      {% if site.telegram_url %}
+      <a class="contact-card" href="{{ site.telegram_url }}" target="_blank" rel="noopener">
+        <span class="ic">tg</span>
+        <span><span class="label">telegram</span><br><span class="value">{{ site.telegram_url|cut:"https://"|cut:"http://" }}</span></span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
