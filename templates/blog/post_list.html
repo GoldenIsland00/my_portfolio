@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "وبلاگ" %} | {{ site.site_name }}{% endblock %}
+
+{% block content %}
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h1 class="sec-title">{% if category %}{{ category.name }}{% else %}{% trans "وبلاگ" %}{% endif %}</h1>
+      <span class="sec-tag">// blog</span>
+    </div>
+    <div class="blog-grid">
+      {% for post in posts %}
+      <a href="{{ post.get_absolute_url }}" class="blog-card">
+        {% if post.cover %}<img src="{{ post.cover.url }}" alt="{{ post.title }}">{% endif %}
+        <div class="body">
+          <h3>{{ post.title }}</h3>
+          <p class="excerpt">{{ post.excerpt|truncatewords:25 }}</p>
+          <div class="meta">
+            {% if post.published_at %}{{ post.published_at|date:"Y-m-d" }} · {% endif %}
+            {{ post.views }} {% trans "بازدید" %}
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <p>{% trans "هنوز پستی منتشر نشده است." %}</p>
+      {% endfor %}
+    </div>
+    {% if posts.has_other_pages %}
+    <div class="pagination">
+      {% if posts.has_previous %}<a href="?page={{ posts.previous_page_number }}">←</a>{% endif %}
+      <span class="current">{{ posts.number }} / {{ posts.paginator.num_pages }}</span>
+      {% if posts.has_next %}<a href="?page={{ posts.next_page_number }}">→</a>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
