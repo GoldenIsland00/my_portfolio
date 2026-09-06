@@ -73,4 +73,3 @@ portfolio_site/
 - meta title/description قابل تنظیم از ادمین برای سایت و هر پست
 - `hreflang` از طریق i18n_patterns
 
-ساخته شده برای اسماعیل تقی‌زاده — Qeshm, Iran
