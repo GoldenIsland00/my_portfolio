@@ -1,1 +1,97 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa' or LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}" data-theme="{{ theme }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ site.default_meta_title|default:site.site_name }}{% endblock %}</title>
+<meta name="description" content="{% block meta_description %}{{ site.default_meta_description }}{% endblock %}">
+<meta name="keywords" content="{% block meta_keywords %}{{ site.default_meta_keywords }}{% endblock %}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="{{ site.site_name }}">
+<link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri }}{% endblock %}">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{% block og_title %}{{ site.default_meta_title|default:site.site_name }}{% endblock %}">
+<meta property="og:description" content="{% block og_description %}{{ site.default_meta_description }}{% endblock %}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+{% if site.hero_photo %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ site.hero_photo.url }}">{% endif %}
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% block tw_title %}{{ site.default_meta_title|default:site.site_name }}{% endblock %}">
+<meta name="twitter:description" content="{% block tw_description %}{{ site.default_meta_description }}{% endblock %}">
+{% if site.favicon %}<link rel="icon" href="{{ site.favicon.url }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block extra_head %}{% endblock %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.site_name }}",
+  "jobTitle": "Software Developer",
+  "url": "{{ request.scheme }}://{{ request.get_host }}",
+  "email": "{{ site.email }}",
+  "address": { "@type": "PostalAddress", "addressLocality": "{{ site.location }}" },
+  "sameAs": ["{{ site.github_url }}", "{{ site.telegram_url }}", "{{ site.linkedin_url }}"]
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="{% url 'core:home' %}" class="brand">esmaeil<span class="dot"></span>dev</a>
+    <nav class="links">
+      <a href="{% url 'core:home' %}#skills">{% trans "مهارت‌ها" %}</a>
+      <a href="{% url 'core:home' %}#project">{% trans "نمونه کارها" %}</a>
+      <a href="{% url 'blog:post_list' %}">{% trans "وبلاگ" %}</a>
+      <a href="{% url 'core:home' %}#education">{% trans "تحصیلات" %}</a>
+      <a href="{% url 'core:home' %}#contact">{% trans "تماس" %}</a>
+    </nav>
+    <div class="nav-actions">
+      <form action="{% url 'set_language' %}" method="post" class="lang-switch" id="langForm">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <select name="language" onchange="this.form.submit()" aria-label="Language">
+          {% get_current_language as CURRENT_LANG %}
+          {% get_available_languages as AVAILABLE_LANGUAGES %}
+          {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+          <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANG %}selected{% endif %}>{{ lang_name }}</option>
+          {% endfor %}
+        </select>
+      </form>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
+      </button>
+      <a href="{% url 'core:home' %}#start-project" class="btn btn-primary nav-cta">{% trans "شروع پروژه" %}</a>
+    </div>
+  </div>
+</header>
 
+<main>
+{% if messages %}
+<div class="wrap messages">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+  <div class="wrap">
+    esmaeil@qeshm:~$ echo "{{ site.footer_text|default:'به‌روزرسانی: ۱۴۰۵' }}"
+  </div>
+</footer>
+
+<form id="themeForm" action="{% url 'core:set_theme' %}" method="post" style="display:none">
+  {% csrf_token %}
+  <input type="hidden" name="theme" id="themeInput">
+</form>
+<script src="{% static 'js/main.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
