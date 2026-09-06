@@ -1,1 +1,244 @@
+/* Professional Jazzmin Admin Theme — Esmaeil Portfolio */
 
+:root {
+  --brand: #0ea5e9;
+  --brand-dark: #0284c7;
+  --surface: #1e293b;
+  --surface-2: #0f172a;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,.35);
+}
+
+/* Brand bar */
+.main-header .navbar-brand,
+.brand-link {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  font-size: 1.15rem !important;
+}
+
+.brand-link .brand-text {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sidebar polish */
+.main-sidebar {
+  box-shadow: 4px 0 24px rgba(0,0,0,.25) !important;
+}
+
+.nav-sidebar .nav-item > .nav-link {
+  border-radius: 8px !important;
+  margin: 2px 8px !important;
+  transition: all .15s ease !important;
+}
+
+.nav-sidebar .nav-item > .nav-link:hover {
+  background: rgba(14,165,233,.12) !important;
+}
+
+.nav-sidebar .nav-item > .nav-link.active {
+  background: linear-gradient(135deg, rgba(14,165,233,.25), rgba(129,140,248,.2)) !important;
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+}
+
+/* Content cards */
+.content-wrapper .card {
+  border: 1px solid rgba(148,163,184,.12) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+  overflow: hidden;
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(148,163,184,.1) !important;
+  font-weight: 600 !important;
+}
+
+/* Buttons */
+.btn-primary, .btn-info {
+  background: linear-gradient(135deg, #0ea5e9, #6366f1) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 12px rgba(14,165,233,.3) !important;
+  transition: transform .12s, box-shadow .12s !important;
+}
+
+.btn-primary:hover, .btn-info:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(14,165,233,.4) !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+/* Tables */
+.table thead th {
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: .75rem !important;
+  letter-spacing: .04em;
+  color: var(--muted) !important;
+  border-bottom: 2px solid rgba(14,165,233,.3) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: rgba(148,163,184,.04) !important;
+}
+
+.table tbody tr:hover {
+  background: rgba(14,165,233,.06) !important;
+}
+
+/* Form fields */
+.form-control, .select2-container--default .select2-selection--single {
+  border-radius: 8px !important;
+  border-color: rgba(148,163,184,.2) !important;
+  background: rgba(15,23,42,.6) !important;
+  transition: border-color .15s, box-shadow .15s !important;
+}
+
+.form-control:focus {
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 0 0 3px rgba(14,165,233,.2) !important;
+}
+
+/* Dashboard / welcome */
+.login-box, .register-box {
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow) !important;
+}
+
+.login-logo a, .register-logo a {
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+}
+
+/* Change form tabs */
+.nav-tabs .nav-link {
+  border-radius: 8px 8px 0 0 !important;
+  font-weight: 500 !important;
+}
+
+.nav-tabs .nav-link.active {
+  border-bottom-color: #0ea5e9 !important;
+  color: #38bdf8 !important;
+}
+
+/* Breadcrumb */
+.content-header {
+  padding-bottom: .5rem !important;
+}
+
+/* Object tools */
+.object-tools a {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* Selectors / filters */
+#changelist-filter {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+
+#changelist-filter h3 {
+  background: linear-gradient(135deg, rgba(14,165,233,.15), rgba(129,140,248,.1)) !important;
+  font-weight: 600 !important;
+  font-size: .8rem !important;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+/* Pagination */
+.pagination .page-item.active .page-link {
+  background: #0ea5e9 !important;
+  border-color: #0ea5e9 !important;
+}
+
+/* Messages */
+.alert {
+  border-radius: 10px !important;
+  border: none !important;
+  font-weight: 500 !important;
+}
+
+/* Footer */
+.main-footer {
+  font-size: .8rem !important;
+  color: var(--muted) !important;
+  border-top: 1px solid rgba(148,163,184,.1) !important;
+}
+
+/* RTL support for Persian/Arabic admin */
+[dir="rtl"] .main-sidebar {
+  box-shadow: -4px 0 24px rgba(0,0,0,.25) !important;
+}
+
+/* Image preview in admin */
+.field-hero_photo img,
+.field-logo img,
+.field-favicon img,
+.field-image img {
+  border-radius: 12px !important;
+  max-height: 180px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3) !important;
+  border: 2px solid rgba(14,165,233,.3) !important;
+}
+
+/* Inline related */
+.inline-group {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+
+/* Jazzmin specific polish */
+.user-panel .info {
+  font-weight: 600 !important;
+}
+
+.elevation-4 {
+  box-shadow: var(--shadow) !important;
+}
+
+/* Better checkbox / switch look */
+.form-check-input:checked {
+  background-color: #0ea5e9 !important;
+  border-color: #0ea5e9 !important;
+}
+
+/* Search bar */
+#searchbar, .form-control[type="search"] {
+  border-radius: 20px !important;
+  padding-left: 1rem !important;
+}
+
+/* App icons */
+.nav-icon {
+  width: 1.2rem !important;
+  text-align: center;
+}
+
+/* Module cards on index */
+.app-core .module, .app-blog .module {
+  border-radius: var(--radius) !important;
+}
