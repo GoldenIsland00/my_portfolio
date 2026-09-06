@@ -1,0 +1,657 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-31 22:18+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: blog/models.py:10 blog/models.py:27 core/models.py:66 core/models.py:189
+msgid "نام"
+msgstr "Name"
+
+#: blog/models.py:12 core/models.py:85
+msgid "توضیح"
+msgstr "Description"
+
+#: blog/models.py:15 blog/models.py:51
+msgid "دسته‌بندی"
+msgstr "Category"
+
+#: blog/models.py:16
+msgid "دسته‌بندی‌ها"
+msgstr "Categories"
+
+#: blog/models.py:31
+msgid "تگ"
+msgstr "Tag"
+
+#: blog/models.py:32 blog/models.py:53
+msgid "تگ‌ها"
+msgstr "Tags"
+
+#: blog/models.py:41
+msgid "پیش‌نویس"
+msgstr "Draft"
+
+#: blog/models.py:42
+msgid "منتشر شده"
+msgstr "Published"
+
+#: blog/models.py:44 core/models.py:80 core/models.py:114 core/models.py:133
+msgid "عنوان"
+msgstr "Title"
+
+#: blog/models.py:46 core/models.py:135
+msgid "خلاصه"
+msgstr "Summary"
+
+#: blog/models.py:47
+msgid "متن"
+msgstr "Body"
+
+#: blog/models.py:48
+msgid "تصویر کاور"
+msgstr "Cover image"
+
+#: blog/models.py:54 core/models.py:15 core/models.py:137
+msgid "وضعیت"
+msgstr "Status"
+
+#: blog/models.py:55 core/models.py:142
+msgid "ویژه"
+msgstr "Featured"
+
+#: blog/models.py:56
+msgid "عنوان SEO"
+msgstr "SEO Title"
+
+#: blog/models.py:57
+msgid "توضیح SEO"
+msgstr "SEO Description"
+
+#: blog/models.py:58
+msgid "کلمات کلیدی"
+msgstr "Keywords"
+
+#: blog/models.py:59
+msgid "تاریخ انتشار"
+msgstr "Publish date"
+
+#: blog/models.py:62 templates/blog/post_list.html:22
+msgid "بازدید"
+msgstr "Views"
+
+#: blog/models.py:73
+msgid "پست"
+msgstr "Post"
+
+#: blog/models.py:74
+msgid "پست‌ها"
+msgstr "Posts"
+
+#: core/admin.py:13
+msgid "عمومی"
+msgstr "General"
+
+#: core/admin.py:16
+msgid "درباره"
+msgstr "About"
+
+#: core/admin.py:19 templates/base.html:51
+msgid "تماس"
+msgstr "Contact"
+
+#: core/admin.py:22
+msgid "SEO"
+msgstr "SEO"
+
+#: core/admin.py:25
+msgid "فوتر"
+msgstr "Footer"
+
+#: core/models.py:8
+msgid "نام سایت"
+msgstr "Site name"
+
+#: core/models.py:9
+msgid "شعار"
+msgstr "Tagline"
+
+#: core/models.py:10
+msgid "لوگو"
+msgstr "Logo"
+
+#: core/models.py:11
+msgid "فاوآیکون"
+msgstr "Favicon"
+
+#: core/models.py:12
+msgid "عکس پروفایل"
+msgstr "Profile photo"
+
+#: core/models.py:13
+msgid "متن درباره من"
+msgstr "About text"
+
+#: core/models.py:14
+msgid "موقعیت"
+msgstr "Location"
+
+#: core/models.py:16
+msgid "نوع کار"
+msgstr "Work type"
+
+#: core/models.py:17
+msgid "یادداشت دورکاری"
+msgstr "Remote note"
+
+#: core/models.py:18 core/models.py:190 templates/core/home.html:221
+#: templates/core/home.html:259
+msgid "ایمیل"
+msgstr "Email"
+
+#: core/models.py:19 core/models.py:191
+msgid "تلفن"
+msgstr "Phone"
+
+#: core/models.py:20 core/models.py:140
+msgid "گیت‌هاب"
+msgstr "GitHub"
+
+#: core/models.py:21 templates/core/home.html:260
+msgid "تلگرام"
+msgstr "Telegram"
+
+#: core/models.py:22
+msgid "لینکدین"
+msgstr "LinkedIn"
+
+#: core/models.py:23
+msgid "عنوان SEO پیش‌فرض"
+msgstr "Default SEO title"
+
+#: core/models.py:24
+msgid "توضیح SEO پیش‌فرض"
+msgstr "Default SEO description"
+
+#: core/models.py:25
+msgid "کلمات کلیدی SEO"
+msgstr "SEO keywords"
+
+#: core/models.py:26
+msgid "متن فوتر"
+msgstr "Footer text"
+
+#: core/models.py:27
+msgid "در دسترس برای پروژه"
+msgstr "Available for projects"
+
+#: core/models.py:31 core/models.py:32
+msgid "تنظیمات سایت"
+msgstr "Site settings"
+
+#: core/models.py:48
+msgid "نام مهارت"
+msgstr "Skill name"
+
+#: core/models.py:50
+msgid "درصد مهارت"
+msgstr "Skill level %"
+
+#: core/models.py:51
+msgid "برچسب تجربه"
+msgstr "Experience label"
+
+#: core/models.py:52 core/models.py:68 core/models.py:87 core/models.py:102
+#: core/models.py:118 core/models.py:144 core/models.py:162 core/models.py:176
+msgid "ترتیب"
+msgstr "Order"
+
+#: core/models.py:53
+msgid "مهارت اصلی"
+msgstr "Primary skill"
+
+#: core/models.py:54 core/models.py:143
+msgid "فعال"
+msgstr "Active"
+
+#: core/models.py:58
+msgid "مهارت فنی"
+msgstr "Technical skill"
+
+#: core/models.py:59 templates/core/home.html:61
+msgid "مهارت‌های فنی"
+msgstr "Technical skills"
+
+#: core/models.py:67 core/models.py:161
+msgid "سطح (۱-۵)"
+msgstr "Level (1-5)"
+
+#: core/models.py:72
+msgid "مهارت نرم"
+msgstr "Soft skill"
+
+#: core/models.py:73 templates/core/home.html:82
+msgid "مهارت‌های نرم"
+msgstr "Soft skills"
+
+#: core/models.py:81
+msgid "مؤسسه"
+msgstr "Institution"
+
+#: core/models.py:82
+msgid "مدرک"
+msgstr "Degree"
+
+#: core/models.py:83
+msgid "شروع"
+msgstr "Start"
+
+#: core/models.py:84
+msgid "پایان"
+msgstr "End"
+
+#: core/models.py:86
+msgid "نشان"
+msgstr "Badge"
+
+#: core/models.py:91 core/models.py:92 templates/base.html:50
+#: templates/core/home.html:101
+msgid "تحصیلات"
+msgstr "Education"
+
+#: core/models.py:99
+msgid "درس"
+msgstr "Course"
+
+#: core/models.py:100
+msgid "نمره"
+msgstr "Score"
+
+#: core/models.py:101
+msgid "زمینه"
+msgstr "Context"
+
+#: core/models.py:106
+msgid "نمره مهم"
+msgstr "Key grade"
+
+#: core/models.py:107 templates/core/home.html:116
+msgid "نمرات مهم"
+msgstr "Key grades"
+
+#: core/models.py:115
+msgid "صادرکننده"
+msgstr "Issuer"
+
+#: core/models.py:116
+msgid "بازه"
+msgstr "Period"
+
+#: core/models.py:117 core/models.py:138
+msgid "تگ‌ها (با کاما)"
+msgstr "Tags (comma-separated)"
+
+#: core/models.py:122
+msgid "گواهی"
+msgstr "Certificate"
+
+#: core/models.py:123 templates/core/home.html:128
+msgid "گواهی‌ها"
+msgstr "Certificates"
+
+#: core/models.py:136
+msgid "توضیح کامل"
+msgstr "Full description"
+
+#: core/models.py:139
+msgid "لینک پروژه"
+msgstr "Project URL"
+
+#: core/models.py:141
+msgid "تصویر"
+msgstr "Image"
+
+#: core/models.py:149
+msgid "پروژه"
+msgstr "Project"
+
+#: core/models.py:150
+msgid "پروژه‌ها"
+msgstr "Projects"
+
+#: core/models.py:160 core/models.py:166
+msgid "زبان"
+msgstr "Language"
+
+#: core/models.py:167 templates/core/home.html:177
+msgid "زبان‌ها"
+msgstr "Languages"
+
+#: core/models.py:174
+msgid "تکنولوژی"
+msgstr ""
+
+#: core/models.py:175
+msgid "برجسته"
+msgstr ""
+
+#: core/models.py:180
+msgid "تکنولوژی مورد علاقه"
+msgstr "Favorite tech"
+
+#: core/models.py:181
+msgid "تکنولوژی‌های مورد علاقه"
+msgstr "Favorite technologies"
+
+#: core/models.py:192
+msgid "شرکت"
+msgstr "Company"
+
+#: core/models.py:193 templates/core/home.html:209 templates/core/home.html:226
+msgid "نوع پروژه"
+msgstr "Project type"
+
+#: core/models.py:194 templates/core/home.html:210
+msgid "جزئیات"
+msgstr "Details"
+
+#: core/models.py:195
+msgid "بودجه"
+msgstr "Budget"
+
+#: core/models.py:196
+msgid "بازه زمانی"
+msgstr "Timeline"
+
+#: core/models.py:197
+msgid "روش تماس"
+msgstr ""
+
+#: core/models.py:198
+msgid "توضیح اضافه"
+msgstr "Extra notes"
+
+#: core/models.py:200
+msgid "خوانده شده"
+msgstr "Read"
+
+#: core/models.py:204
+msgid "درخواست پروژه"
+msgstr "Project inquiry"
+
+#: core/models.py:205
+msgid "درخواست‌های پروژه"
+msgstr "Project inquiries"
+
+#: core/views.py:52
+msgid "درخواست شما ثبت شد. به زودی با شما تماس می‌گیریم."
+msgstr "Your request has been submitted. We'll contact you soon."
+
+#: templates/base.html:47
+msgid "مهارت‌ها"
+msgstr "Skills"
+
+#: templates/base.html:48
+msgid "نمونه کارها"
+msgstr "Portfolio"
+
+#: templates/base.html:49 templates/blog/post_list.html:4
+#: templates/blog/post_list.html:10
+msgid "وبلاگ"
+msgstr "Blog"
+
+#: templates/base.html:68 templates/core/home.html:24
+#: templates/core/home.html:196
+msgid "شروع پروژه"
+msgstr "Start a project"
+
+#: templates/blog/post_detail.html:18
+msgid "مطالب مرتبط"
+msgstr ""
+
+#: templates/blog/post_list.html:27
+msgid "هنوز پستی منتشر نشده است."
+msgstr ""
+
+#: templates/core/home.html:4
+msgid "توسعه‌دهنده نرم‌افزار"
+msgstr "Software Developer"
+
+#: templates/core/home.html:18
+msgid "در جستجوی فعال برای پروژه‌های جدید"
+msgstr "Actively looking for new projects"
+
+#: templates/core/home.html:21
+msgid "توسعه‌دهنده نرم‌افزار · Python · Django · Flask"
+msgstr "Software Developer · Python · Django · Flask"
+
+#: templates/core/home.html:22
+msgid ""
+"برنامه‌نویسی را از زاویه‌ی حل مسئله دنبال می‌کنم؛ از تحلیل داده تا ساخت "
+"اپلیکیشن‌های وب، با تمرکز روی کد تمیز و ذهنیت الگوریتمیک."
+msgstr ""
+
+#: templates/core/home.html:25
+msgid "مشاهده نمونه کارها"
+msgstr "View portfolio"
+
+#: templates/core/home.html:40
+msgid "درباره من"
+msgstr "About me"
+
+#: templates/core/home.html:44
+msgid ""
+"برنامه‌نویس و کدنویس علاقه‌مند به هوش مصنوعی و تحلیل داده هستم. در کنار کار "
+"تیمی، به ذهنیت الگوریتمیک برای حل مسائل و چالش‌های پیش رو اهمیت زیادی می‌دهم و "
+"همیشه به دنبال یادگیری فناوری‌های تازه‌ام."
+msgstr ""
+
+#: templates/core/home.html:45
+msgid ""
+"در حال حاضر دانشجوی مهندسی کامپیوتر و به‌صورت پروژه‌ای در دسترس برای همکاری "
+"هستم."
+msgstr ""
+
+#: templates/core/home.html:53
+msgid "قشم و امکان همکاری غیرحضوری"
+msgstr ""
+
+#: templates/core/home.html:72
+msgid "مهارت‌ها از پنل ادمین قابل افزودن هستند."
+msgstr ""
+
+#: templates/core/home.html:93
+msgid "از پنل ادمین اضافه کنید."
+msgstr ""
+
+#: templates/core/home.html:111
+msgid "تحصیلات از پنل ادمین قابل افزودن است."
+msgstr ""
+
+#: templates/core/home.html:147
+msgid "پروژه‌های متن‌باز"
+msgstr ""
+
+#: templates/core/home.html:160
+msgid "پروژه‌ها از پنل ادمین قابل افزودن هستند."
+msgstr ""
+
+#: templates/core/home.html:164
+msgid "تکنولوژی‌های مورد علاقه برای کار"
+msgstr ""
+
+#: templates/core/home.html:197
+msgid ""
+"فقط چند قدم تا شروع همکاری فاصله دارید. اطلاعات پروژه‌تان را وارد کنید تا در "
+"کمتر از ۲۴ ساعت باهاتون تماس بگیرم."
+msgstr ""
+
+#: templates/core/home.html:208 templates/core/home.html:218
+msgid "اطلاعات تماس"
+msgstr "Contact info"
+
+#: templates/core/home.html:211
+msgid "تکمیلی"
+msgstr ""
+
+#: templates/core/home.html:219
+msgid "لطفاً اطلاعات خود را وارد کنید"
+msgstr ""
+
+#: templates/core/home.html:220
+msgid "نام و نام خانوادگی"
+msgstr "Full name"
+
+#: templates/core/home.html:222
+msgid "شماره تماس"
+msgstr "Phone number"
+
+#: templates/core/home.html:223
+msgid "نام شرکت"
+msgstr ""
+
+#: templates/core/home.html:223 templates/core/home.html:240
+#: templates/core/home.html:250 templates/core/home.html:256
+#: templates/core/home.html:264
+msgid "اختیاری"
+msgstr ""
+
+#: templates/core/home.html:227
+msgid "پروژه‌ی شما به کدام دسته نزدیک‌تر است؟"
+msgstr ""
+
+#: templates/core/home.html:229
+msgid "وب‌سایت / اپلیکیشن وب"
+msgstr "Website / Web app"
+
+#: templates/core/home.html:230
+msgid "تحلیل داده و وب‌اسکرپینگ"
+msgstr ""
+
+#: templates/core/home.html:231
+msgid "اتوماسیون و اسکریپت"
+msgstr ""
+
+#: templates/core/home.html:232
+msgid "سایر"
+msgstr "Other"
+
+#: templates/core/home.html:232
+msgid "بگویید چه چیزی مدنظرتان است"
+msgstr ""
+
+#: templates/core/home.html:236
+msgid "جزئیات پروژه"
+msgstr "Project details"
+
+#: templates/core/home.html:237
+msgid "کمی درباره پروژه‌تان توضیح دهید"
+msgstr ""
+
+#: templates/core/home.html:238
+msgid "توضیح پروژه"
+msgstr ""
+
+#: templates/core/home.html:240
+msgid "بودجه تقریبی"
+msgstr "Approximate budget"
+
+#: templates/core/home.html:242 templates/core/home.html:258
+msgid "انتخاب کنید"
+msgstr ""
+
+#: templates/core/home.html:243
+msgid "زیر ۵ میلیون تومان"
+msgstr ""
+
+#: templates/core/home.html:244
+msgid "۵ تا ۱۵ میلیون تومان"
+msgstr ""
+
+#: templates/core/home.html:245
+msgid "۱۵ تا ۳۰ میلیون تومان"
+msgstr ""
+
+#: templates/core/home.html:246
+msgid "بیش از ۳۰ میلیون تومان"
+msgstr ""
+
+#: templates/core/home.html:247
+msgid "هنوز مشخص نیست"
+msgstr ""
+
+#: templates/core/home.html:250
+msgid "بازه زمانی مدنظر"
+msgstr ""
+
+#: templates/core/home.html:253
+msgid "اطلاعات تکمیلی"
+msgstr ""
+
+#: templates/core/home.html:254
+msgid "آخرین نکاتی که کمک می‌کند بهتر آماده شوم"
+msgstr ""
+
+#: templates/core/home.html:256
+msgid "روش ترجیحی برای تماس"
+msgstr ""
+
+#: templates/core/home.html:261
+msgid "تماس تلفنی"
+msgstr ""
+
+#: templates/core/home.html:264
+msgid "نکته یا توضیح اضافه"
+msgstr ""
+
+#: templates/core/home.html:267
+msgid "مرور و ارسال"
+msgstr ""
+
+#: templates/core/home.html:268
+msgid "قبل از ارسال، اطلاعات را بررسی کنید"
+msgstr ""
+
+#: templates/core/home.html:274
+msgid "آماده ارسال"
+msgstr ""
+
+#: templates/core/home.html:275
+msgid "با زدن دکمه زیر درخواست ثبت می‌شود."
+msgstr ""
+
+#: templates/core/home.html:279
+msgid "قبلی"
+msgstr "Previous"
+
+#: templates/core/home.html:280
+msgid "بعدی"
+msgstr "Next"
+
+#: templates/core/home.html:285
+msgid "پاسخ در کمتر از ۲۴ ساعت"
+msgstr ""
+
+#: templates/core/home.html:286
+msgid "محرمانگی اطلاعات تضمین‌شده"
+msgstr ""
+
+#: templates/core/home.html:287
+msgid "مشاوره اولیه رایگان"
+msgstr ""
+
+#: templates/core/home.html:295
+msgid "تماس با من"
+msgstr ""
