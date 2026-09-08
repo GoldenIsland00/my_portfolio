@@ -46,22 +46,39 @@
     <nav class="links">
       <a href="{% url 'core:home' %}#skills">{% trans "مهارت‌ها" %}</a>
       <a href="{% url 'core:home' %}#project">{% trans "نمونه کارها" %}</a>
+      <a href="{% url 'core:home' %}#services">{% trans "خدمات" %}</a>
       <a href="{% url 'blog:post_list' %}">{% trans "وبلاگ" %}</a>
       <a href="{% url 'core:home' %}#education">{% trans "تحصیلات" %}</a>
       <a href="{% url 'core:home' %}#contact">{% trans "تماس" %}</a>
     </nav>
     <div class="nav-actions">
-      <form action="{% url 'set_language' %}" method="post" class="lang-switch" id="langForm">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <select name="language" onchange="this.form.submit()" aria-label="Language">
-          {% get_current_language as CURRENT_LANG %}
-          {% get_available_languages as AVAILABLE_LANGUAGES %}
-          {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
-          <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANG %}selected{% endif %}>{{ lang_name }}</option>
-          {% endfor %}
-        </select>
-      </form>
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn" id="langToggle" aria-label="Change language" aria-expanded="false">
+          <span class="lang-flag" id="langFlag">
+            {% get_current_language as CURRENT_LANG %}
+            {% if CURRENT_LANG == 'fa' %}🇮🇷{% elif CURRENT_LANG == 'ar' %}🇴🇲{% else %}🇬🇧{% endif %}
+          </span>
+          <span class="lang-code">{{ CURRENT_LANG|upper }}</span>
+          <span class="lang-chevron">▾</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown" hidden>
+          <form action="{% url 'set_language' %}" method="post" id="langForm">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="hidden" name="language" id="langInput" value="">
+            {% get_available_languages as AVAILABLE_LANGUAGES %}
+            {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+            <button type="button" class="lang-option {% if lang_code == CURRENT_LANG %}active{% endif %}" data-lang="{{ lang_code }}">
+              <span class="lang-flag">
+                {% if lang_code == 'fa' %}🇮🇷{% elif lang_code == 'ar' %}🇴🇲{% else %}🇬🇧{% endif %}
+              </span>
+              <span>{{ lang_name }}</span>
+              {% if lang_code == CURRENT_LANG %}<span class="lang-check">✓</span>{% endif %}
+            </button>
+            {% endfor %}
+          </form>
+        </div>
+      </div>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <span class="icon-sun">☀</span><span class="icon-moon">☾</span>
       </button>
