@@ -10,7 +10,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-change-me-in-p
 
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('1', 'true', 'yes')
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'https://villiam-taghizadeh.onrender.com/,villiam-taghizadeh.onrender.com').split(',')
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
     'modeltranslation',
@@ -143,7 +143,7 @@ JAZZMIN_SETTINGS = {
     'topmenu_links': [
         {'name': '🏠 سایت', 'url': '/', 'new_window': True},
         {'name': '📝 وبلاگ', 'url': '/blog/', 'new_window': True},
-        {'name': '⚙️ تنظیمات', 'url': 'admin:core_sitesettings_change', 'args': [1]},
+        {'name': '⚙️ تنظیمات', 'url': '/admin/core/sitesettings/', 'new_window': False},
     ],
     'usermenu_links': [
         {'name': 'مشاهده سایت', 'url': '/', 'new_window': True, 'icon': 'fas fa-external-link-alt'},
@@ -224,7 +224,7 @@ JAZZMIN_UI_TWEAKS = {
     'sidebar_nav_legacy_style': False,
     'sidebar_nav_flat_style': True,
     'theme': 'darkly',
-    'dark_mode_theme': 'darkly',
+    'default_theme_mode': 'dark',
     'button_classes': {
         'primary': 'btn-info',
         'secondary': 'btn-secondary',
