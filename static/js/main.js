@@ -172,3 +172,66 @@
   });
   showStep(0);
 })();
+
+// Language switcher dropdown
+(function () {
+  var btn = document.getElementById('langToggle');
+  var dropdown = document.getElementById('langDropdown');
+  var form = document.getElementById('langForm');
+  var input = document.getElementById('langInput');
+  if (!btn || !dropdown || !form) return;
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = !dropdown.hidden;
+    dropdown.hidden = open;
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+
+  document.addEventListener('click', function () {
+    dropdown.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+  });
+
+  dropdown.addEventListener('click', function (e) { e.stopPropagation(); });
+
+  dropdown.querySelectorAll('.lang-option').forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      var code = opt.getAttribute('data-lang');
+      if (!code) return;
+      input.value = code;
+      form.submit();
+    });
+  });
+})();
+
+// Service cards → preselect project type in wizard
+(function () {
+  document.querySelectorAll('.service-card[data-ptype]').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var ptype = card.getAttribute('data-ptype');
+      setTimeout(function () {
+        var form = document.getElementById('projectForm');
+        if (!form) return;
+        // Go to step 2 if possible
+        var radio = form.querySelector('input[name="ptype"][value="' + ptype + '"]');
+        if (!radio) {
+          // try partial match or set "سایر" and fill details later
+          var others = form.querySelectorAll('input[name="ptype"]');
+          for (var i = 0; i < others.length; i++) {
+            if (others[i].value.indexOf(ptype) !== -1 || ptype.indexOf(others[i].value) !== -1) {
+              radio = others[i];
+              break;
+            }
+          }
+        }
+        if (radio) {
+          form.querySelectorAll('.radio-card').forEach(function (c) { c.classList.remove('checked'); });
+          radio.checked = true;
+          var parent = radio.closest('.radio-card');
+          if (parent) parent.classList.add('checked');
+        }
+      }, 80);
+    });
+  });
+})();
