@@ -7,6 +7,7 @@ from .models import (
     SiteSettings, Skill, SoftSkill, Education, Grade,
     Certificate, Project, Language, FavoriteTech, ProjectInquiry
 )
+from blog.models import Post
 
 
 def home(request):
@@ -20,6 +21,7 @@ def home(request):
         'projects': Project.objects.filter(is_active=True),
         'languages': Language.objects.all(),
         'fav_techs': FavoriteTech.objects.all(),
+        'latest_posts': Post.objects.filter(status='published')[:3],
     }
     return render(request, 'core/home.html', ctx)
 

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
+from django.shortcuts import redirect
+from django.urls import path, reverse
 from modeltranslation.admin import TranslationAdmin
 from .models import (
     SiteSettings, Skill, SoftSkill, Education, Grade,
@@ -10,6 +12,7 @@ from .models import (
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(TranslationAdmin):
+    """Singleton: always one row (pk=1). Changelist redirects to change form."""
     fieldsets = (
         (_('عمومی'), {
             'fields': ('site_name', 'site_tagline', 'logo', 'favicon', 'hero_photo', 'is_available'),
@@ -29,13 +32,27 @@ class SiteSettingsAdmin(TranslationAdmin):
             'fields': ('footer_text',),
         }),
     )
-    readonly_fields = ()
 
     def has_add_permission(self, request):
         return not SiteSettings.objects.exists()
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def changelist_view(self, request, extra_context=None):
+        obj = SiteSettings.load()
+        return redirect(reverse('admin:core_sitesettings_change', args=[obj.pk]))
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom = [
+            path(
+                '',
+                self.admin_site.admin_view(self.changelist_view),
+                name='core_sitesettings_changelist',
+            ),
+        ]
+        return custom + urls
 
 
 @admin.register(Skill)
