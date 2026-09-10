@@ -44,12 +44,9 @@
   <div class="wrap nav">
     <a href="{% url 'core:home' %}" class="brand">esmaeil<span class="dot"></span>dev</a>
     <nav class="links">
-      <a href="{% url 'core:home' %}#skills">{% trans "مهارت‌ها" %}</a>
-      <a href="{% url 'core:home' %}#project">{% trans "نمونه کارها" %}</a>
-      <a href="{% url 'core:home' %}#services">{% trans "خدمات" %}</a>
+      <a href="{% url 'core:home' %}">{% trans "خانه" %}</a>
       <a href="{% url 'blog:post_list' %}">{% trans "وبلاگ" %}</a>
-      <a href="{% url 'core:home' %}#education">{% trans "تحصیلات" %}</a>
-      <a href="{% url 'core:home' %}#contact">{% trans "تماس" %}</a>
+      <a href="{% url 'core:about' %}">{% trans "من کیم؟" %}</a>
     </nav>
     <div class="nav-actions">
       <div class="lang-switcher">
