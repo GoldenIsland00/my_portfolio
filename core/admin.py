@@ -6,7 +6,7 @@ from django.urls import path, reverse
 from modeltranslation.admin import TranslationAdmin
 from .models import (
     SiteSettings, Skill, SoftSkill, Education, Grade,
-    Certificate, Project, Language, FavoriteTech, ProjectInquiry
+    Certificate, Project, Language, FavoriteTech, ProjectInquiry, Testimonial
 )
 
 
@@ -171,3 +171,24 @@ class ProjectInquiryAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
+
+
+@admin.register(Testimonial)
+class TestimonialAdmin(TranslationAdmin):
+    list_display = ('name', 'gender_badge', 'project_topic', 'is_active', 'order', 'created_at')
+    list_editable = ('order', 'is_active')
+    list_filter = ('gender', 'is_active')
+    search_fields = ('name', 'project_topic', 'comment')
+    ordering = ('order', '-created_at')
+
+    @admin.display(description=_('جنسیت'))
+    def gender_badge(self, obj):
+        if obj.gender == 'female':
+            return format_html(
+                '<span style="background:#ec489933;color:#ec4899;padding:3px 10px;'
+                'border-radius:20px;font-size:12px;font-weight:600">♀ خانم</span>'
+            )
+        return format_html(
+            '<span style="background:#3b82f633;color:#3b82f6;padding:3px 10px;'
+            'border-radius:20px;font-size:12px;font-weight:600">♂ آقا</span>'
+        )

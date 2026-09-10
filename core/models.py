@@ -206,3 +206,26 @@ class ProjectInquiry(models.Model):
 
     def __str__(self):
         return f'{self.fullname} – {self.created_at:%Y-%m-%d}'
+
+
+class Testimonial(models.Model):
+    """نظرات کاربران درباره پروژه‌های انجام‌شده – قابل مدیریت از ادمین."""
+    GENDER_CHOICES = [
+        ('male', _('آقا')),
+        ('female', _('خانم')),
+    ]
+    name = models.CharField(_('نام کاربر'), max_length=120)
+    gender = models.CharField(_('جنسیت'), max_length=10, choices=GENDER_CHOICES, default='male')
+    project_topic = models.CharField(_('موضوع پروژه'), max_length=200)
+    comment = models.TextField(_('نظر'))
+    order = models.PositiveIntegerField(_('ترتیب'), default=0)
+    is_active = models.BooleanField(_('فعال'), default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', '-created_at']
+        verbose_name = _('نظر کاربر')
+        verbose_name_plural = _('نظرات کاربران')
+
+    def __str__(self):
+        return f'{self.name} – {self.project_topic}'

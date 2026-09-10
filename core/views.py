@@ -5,12 +5,20 @@ from django.utils.translation import gettext as _
 from django.http import JsonResponse
 from .models import (
     SiteSettings, Skill, SoftSkill, Education, Grade,
-    Certificate, Project, Language, FavoriteTech, ProjectInquiry
+    Certificate, Project, Language, FavoriteTech, ProjectInquiry, Testimonial
 )
 from blog.models import Post
 
 
 def home(request):
+    ctx = {
+        'testimonials': Testimonial.objects.filter(is_active=True),
+        'latest_posts': Post.objects.filter(status='published')[:3],
+    }
+    return render(request, 'core/home.html', ctx)
+
+
+def about(request):
     ctx = {
         'skills': Skill.objects.filter(is_active=True, is_primary=True),
         'extra_skills': Skill.objects.filter(is_active=True, is_primary=False),
@@ -18,12 +26,11 @@ def home(request):
         'education': Education.objects.all(),
         'grades': Grade.objects.all(),
         'certificates': Certificate.objects.all(),
-        'projects': Project.objects.filter(is_active=True),
         'languages': Language.objects.all(),
+        'projects': Project.objects.filter(is_active=True),
         'fav_techs': FavoriteTech.objects.all(),
-        'latest_posts': Post.objects.filter(status='published')[:3],
     }
-    return render(request, 'core/home.html', ctx)
+    return render(request, 'core/about.html', ctx)
 
 
 @require_POST

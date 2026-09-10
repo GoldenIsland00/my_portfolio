@@ -1,7 +1,7 @@
 from modeltranslation.translator import translator, TranslationOptions
 from .models import (
     SiteSettings, Skill, SoftSkill, Education, Grade,
-    Certificate, Project, Language, FavoriteTech
+    Certificate, Project, Language, FavoriteTech, Testimonial
 )
 
 
@@ -45,6 +45,10 @@ class FavoriteTechTranslation(TranslationOptions):
     fields = ('name',)
 
 
+class TestimonialTranslation(TranslationOptions):
+    fields = ('name', 'project_topic', 'comment')
+
+
 translator.register(SiteSettings, SiteSettingsTranslation)
 translator.register(Skill, SkillTranslation)
 translator.register(SoftSkill, SoftSkillTranslation)
@@ -54,3 +58,4 @@ translator.register(Certificate, CertificateTranslation)
 translator.register(Project, ProjectTranslation)
 translator.register(Language, LanguageTranslation)
 translator.register(FavoriteTech, FavoriteTechTranslation)
+translator.register(Testimonial, TestimonialTranslation)
