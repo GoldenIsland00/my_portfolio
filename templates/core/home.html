@@ -22,7 +22,7 @@
     <p class="lede">{% trans "برنامه‌نویسی را از زاویه‌ی حل مسئله دنبال می‌کنم؛ از تحلیل داده تا ساخت اپلیکیشن‌های وب، با تمرکز روی کد تمیز و ذهنیت الگوریتمیک." %}</p>
     <div class="cta-row">
       <a href="#start-project" class="btn btn-primary">{% trans "شروع پروژه" %}</a>
-      <a href="#project" class="btn btn-ghost">{% trans "مشاهده نمونه کارها" %}</a>
+      <a href="#testimonials" class="btn btn-ghost">{% trans "مشاهده نظرات" %}</a>
     </div>
   </div>
   <div class="terminal">
@@ -34,177 +34,35 @@
   </div>
 </div>
 
-<section id="about">
-  <div class="wrap about-grid">
-    <div>
-      <div class="sec-head"><h2 class="sec-title">{% trans "درباره من" %}</h2><span class="sec-tag">// about</span></div>
-      {% if site.about_text %}
-      <div class="about-text">{{ site.about_text|safe }}</div>
-      {% else %}
-      <p>{% trans "برنامه‌نویس و کدنویس علاقه‌مند به هوش مصنوعی و تحلیل داده هستم. در کنار کار تیمی، به ذهنیت الگوریتمیک برای حل مسائل و چالش‌های پیش رو اهمیت زیادی می‌دهم و همیشه به دنبال یادگیری فناوری‌های تازه‌ام." %}</p>
-      <p>{% trans "در حال حاضر دانشجوی مهندسی کامپیوتر و به‌صورت پروژه‌ای در دسترس برای همکاری هستم." %}</p>
-      {% endif %}
-    </div>
-    <div class="facts">
-      <dl>
-        <dt>location</dt><dd>{{ site.location }}</dd>
-        <dt>status</dt><dd>{{ site.status }}</dd>
-        <dt>work_type</dt><dd>{{ site.work_type }}</dd>
-        <dt>remote</dt><dd>{{ site.remote_note|default:_("قشم و امکان همکاری غیرحضوری") }}</dd>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
+{% if testimonials %}
+<section id="testimonials">
   <div class="wrap">
-    <div class="sec-head"><h2 class="sec-title">{% trans "مهارت‌های فنی" %}</h2><span class="sec-tag">GET /skills</span></div>
-    {% for s in skills %}
-    <div class="endpoint">
-      <span class="method">200 OK</span>
-      <span class="path">/stack/<b>{{ s.slug }}</b></span>
-      <span class="exp">
-        <span class="barwrap"><span class="barfill" style="width:{{ s.level_percent }}%"></span></span>
-        <span class="exp-label">{{ s.experience_label }}</span>
-      </span>
+    <div class="sec-head">
+      <h2 class="sec-title">{% trans "نظرات کاربران" %}</h2>
+      <span class="sec-tag">// testimonials</span>
     </div>
-    {% empty %}
-    <p class="lede">{% trans "مهارت‌ها از پنل ادمین قابل افزودن هستند." %}</p>
-    {% endfor %}
-    {% if extra_skills %}
-    <div class="tagcloud">
-      {% for s in extra_skills %}
-      <span class="tag {% if s.level_percent >= 40 %}hi{% endif %}">{{ s.name }} · {{ s.experience_label }}</span>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    <div class="sec-head" style="margin-top:44px;"><h2 class="sec-title" style="font-size:20px;">{% trans "مهارت‌های نرم" %}</h2></div>
-    <div class="soft-grid">
-      {% for s in soft_skills %}
-      <div class="soft-item">{{ s.name }}
-        <span class="dots">
-          {% for i in "12345" %}
-          <span class="{% if forloop.counter <= s.level %}on{% endif %}"></span>
-          {% endfor %}
-        </span>
-      </div>
-      {% empty %}
-      <p>{% trans "از پنل ادمین اضافه کنید." %}</p>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section id="education">
-  <div class="wrap">
-    <div class="sec-head"><h2 class="sec-title">{% trans "تحصیلات" %}</h2><span class="sec-tag">// education</span></div>
-    <div class="timeline">
-      {% for e in education %}
-      <div class="t-item">
-        <div class="t-date">{{ e.start_date }} — {{ e.end_date }}</div>
-        <h3 class="t-title">{{ e.title }}</h3>
-        <p class="t-sub">{% if e.degree %}{{ e.degree }} · {% endif %}{{ e.institution }}</p>
-        {% if e.badge %}<span class="badge">{{ e.badge }}</span>{% endif %}
-      </div>
-      {% empty %}
-      <p>{% trans "تحصیلات از پنل ادمین قابل افزودن است." %}</p>
-      {% endfor %}
-    </div>
-
-    {% if grades %}
-    <div class="sec-head" style="margin-top:52px;"><h2 class="sec-title" style="font-size:20px;">{% trans "نمرات مهم" %}</h2></div>
-    <div class="card">
-      {% for g in grades %}
-      <div class="grade-row">
-        <div class="grade-num">{{ g.score }}</div>
-        <div class="grade-txt"><b>{{ g.course }}</b><span>{{ g.context }}</span></div>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if certificates %}
-    <div class="sec-head" style="margin-top:52px;"><h2 class="sec-title" style="font-size:20px;">{% trans "گواهی‌ها" %}</h2></div>
-    <div class="card-grid">
-      {% for c in certificates %}
-      <div class="card">
-        <h3>{{ c.title }}</h3>
-        <p class="sub">{{ c.issuer }}</p>
-        <div class="period">{{ c.period }}</div>
-        <div class="tagcloud">
-          {% for t in c.tag_list %}<span class="tag">{{ t }}</span>{% endfor %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-</section>
-
-<section id="project">
-  <div class="wrap">
-    <div class="sec-head"><h2 class="sec-title">{% trans "پروژه‌های متن‌باز" %}</h2><span class="sec-tag">// projects</span></div>
-    {% for p in projects %}
-    <div class="project">
-      <div class="project-head">
-        <h3>{{ p.title }}</h3>
-        {% if p.status %}<span class="status-pill">{{ p.status }}</span>{% endif %}
-      </div>
-      <p>{{ p.summary }}</p>
-      <div class="tagcloud">
-        {% for t in p.tag_list %}<span class="tag hi">{{ t }}</span>{% endfor %}
-      </div>
-    </div>
-    {% empty %}
-    <p>{% trans "پروژه‌ها از پنل ادمین قابل افزودن هستند." %}</p>
-    {% endfor %}
-
-    {% if fav_techs %}
-    <div class="sec-head" style="margin-top:52px;"><h2 class="sec-title" style="font-size:20px;">{% trans "تکنولوژی‌های مورد علاقه برای کار" %}</h2></div>
-    <div class="tagcloud">
-      {% for t in fav_techs %}
-      <span class="tag {% if t.is_highlight %}hi{% endif %}">{{ t.name }}</span>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-</section>
-
-{% if languages %}
-<section id="languages">
-  <div class="wrap">
-    <div class="sec-head"><h2 class="sec-title">{% trans "زبان‌ها" %}</h2><span class="sec-tag">// languages</span></div>
-    <p class="lede" style="margin:-8px 0 28px; max-width:56ch;">{% trans "سطح مهارت زبانی من بر اساس مقیاس ۵ درجه‌ای و نزدیک به چارچوب CEFR." %}</p>
-    <div class="lang-grid">
-      {% for l in languages %}
-      <div class="lang-card">
-        <div class="lang-card-top">
-          <span class="lang-name">{{ l.name }}</span>
-          <span class="lang-level-badge">
-            {% if l.level >= 5 %}C2{% elif l.level == 4 %}C1{% elif l.level == 3 %}B2{% elif l.level == 2 %}B1{% else %}A2{% endif %}
+    <p class="lede" style="margin:-8px 0 28px; max-width:56ch;">{% trans "نظرات واقعی کاربران درباره پروژه‌های انجام‌شده. روی هر مورد کلیک کنید تا جزئیات را ببینید." %}</p>
+    <div class="testimonials-list">
+      {% for t in testimonials %}
+      <details class="testimonial-item">
+        <summary class="testimonial-summary">
+          <span class="testimonial-avatar {% if t.gender == 'female' %}female{% else %}male{% endif %}" aria-hidden="true">
+            {% if t.gender == 'female' %}
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.5a2.5 2.5 0 0 1 0 5"/><path d="M8 3.5a2.5 2.5 0 0 0 0 5"/></svg>
+            {% else %}
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+            {% endif %}
           </span>
-        </div>
-        <div class="lang-bar-wrap">
-          <div class="lang-bar" style="width:calc({{ l.level }} * 20%)"></div>
-        </div>
-        <div class="lang-meta">
-          <span class="dots">
-            {% for i in "12345" %}
-            <span class="{% if forloop.counter <= l.level %}on{% endif %}"></span>
-            {% endfor %}
+          <span class="testimonial-meta">
+            <span class="testimonial-name">{{ t.name }}</span>
+            <span class="testimonial-topic">{{ t.project_topic }}</span>
           </span>
-          <span class="lang-label">
-            {% if l.level >= 5 %}{% trans "مسلط" %}
-            {% elif l.level == 4 %}{% trans "پیشرفته" %}
-            {% elif l.level == 3 %}{% trans "متوسط رو به بالا" %}
-            {% elif l.level == 2 %}{% trans "متوسط" %}
-            {% else %}{% trans "مبتدی" %}{% endif %}
-          </span>
+          <span class="testimonial-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="testimonial-body">
+          <p>{{ t.comment }}</p>
         </div>
-      </div>
-      {% empty %}
-      <p>{% trans "زبان‌ها از پنل ادمین قابل افزودن هستند." %}</p>
+      </details>
       {% endfor %}
     </div>
   </div>
@@ -454,38 +312,6 @@
         <span>{% trans "محرمانگی اطلاعات تضمین‌شده" %}</span>
         <span>{% trans "مشاوره اولیه رایگان" %}</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-head"><h2 class="sec-title">{% trans "تماس با من" %}</h2><span class="sec-tag">// contact</span></div>
-    <div class="contact-grid">
-      {% if site.email %}
-      <a class="contact-card" href="mailto:{{ site.email }}">
-        <span class="ic">@</span>
-        <span><span class="label">email</span><br><span class="value">{{ site.email }}</span></span>
-      </a>
-      {% endif %}
-      {% if site.phone %}
-      <a class="contact-card" href="tel:+98{{ site.phone|cut:' '|cut:'-' }}">
-        <span class="ic">#</span>
-        <span><span class="label">phone</span><br><span class="value">{{ site.phone }}</span></span>
-      </a>
-      {% endif %}
-      {% if site.github_url %}
-      <a class="contact-card" href="{{ site.github_url }}" target="_blank" rel="noopener">
-        <span class="ic">gh</span>
-        <span><span class="label">github</span><br><span class="value">{{ site.github_url|cut:"https://"|cut:"http://" }}</span></span>
-      </a>
-      {% endif %}
-      {% if site.telegram_url %}
-      <a class="contact-card" href="{{ site.telegram_url }}" target="_blank" rel="noopener">
-        <span class="ic">tg</span>
-        <span><span class="label">telegram</span><br><span class="value">{{ site.telegram_url|cut:"https://"|cut:"http://" }}</span></span>
-      </a>
-      {% endif %}
     </div>
   </div>
 </section>
